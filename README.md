@@ -148,6 +148,7 @@ docker run -d \
        -v ./.env.app:/var/www/html/.env.app \
        -v encryption-redis:/var/lib/redis \
        -v encryption-mysql:/var/lib/mysql \
+       -v ./logs:/var/www/html/storage/logs \
        --restart=unless-stopped \
        --name encryption-$APP_RELEASE referralfactory/encryption-app:$APP_RELEASE
 ```
@@ -161,6 +162,7 @@ docker run -d \
        -p $FORWARD_APP_PORT:8080 \
        -v ./.env.app:/var/www/html/.env.app \
        -v encryption-redis:/var/lib/redis \
+       -v ./logs:/var/www/html/storage/logs \
        --restart=unless-stopped \
        --name encryption-$APP_RELEASE referralfactory/encryption-app:$APP_RELEASE
 ```
