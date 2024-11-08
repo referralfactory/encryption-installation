@@ -29,7 +29,7 @@ mkdir project && cd project
 To run the setup with the installation script, you have to execute following line.
 
 ```bash
-sh -c "$(curl -fsSL https://referral-factory.com/fetch/encryption)"
+bash -c "$(curl -fsSL https://referral-factory.com/fetch/encryption)"
 ```
 
 ### Installation steps
