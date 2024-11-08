@@ -26,17 +26,10 @@ mkdir project && cd project
 
 ## Installation script
 
-To run the setup with the installation script, you have to download the script file.
+To run the setup with the installation script, you have to execute following line.
 
 ```bash
-curl -o setup https://referral-factory.com/fetch/encryption && \
-chmod +x setup
-```
-
-To start the installation process, run the following command.
-
-```bash
-./setup
+sh -c "$(curl -fsSL https://referral-factory.com/fetch/encryption)"
 ```
 
 ### Installation steps
