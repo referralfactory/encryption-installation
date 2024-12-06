@@ -136,14 +136,16 @@ APP_RELEASE=1.0.14 && \
 FORWARD_APP_PORT=8080 && \
 FORWARD_MYSQL_PORT=3306 && \
 ENV_FILE=./.env.app && \
+LOGS_DIR=./logs && \
 [ -f $ENV_FILE ] && sudo chown 1000:1000 $ENV_FILE && \
+mkdir -p $LOGS_DIR && sudo chown -R 1000:1000 $LOGS_DIR && \
 docker run -d \
        -p $FORWARD_APP_PORT:8080 \
        -p $FORWARD_MYSQL_PORT:3306 \
        -v $ENV_FILE:/var/www/html/.env.app \
+       -v $LOGS_DIR:/var/www/html/storage/logs \
        -v encryption-redis:/var/lib/redis \
        -v encryption-mysql:/var/lib/mysql \
-       -v ./logs:/var/www/html/storage/logs \
        --restart=unless-stopped \
        --name encryption-$APP_RELEASE referralfactory/encryption-app:$APP_RELEASE
 ```
@@ -154,12 +156,14 @@ docker run -d \
 APP_RELEASE=1.0.14 && \
 FORWARD_APP_PORT=8080 && \
 ENV_FILE=./.env.app && \
+LOGS_DIR=./logs && \
 [ -f $ENV_FILE ] && sudo chown 1000:1000 $ENV_FILE && \
+mkdir -p $LOGS_DIR && sudo chown -R 1000:1000 $LOGS_DIR && \
 docker run -d \
        -p $FORWARD_APP_PORT:8080 \
        -v $ENV_FILE:/var/www/html/.env.app \
+       -v $LOGS_DIR:/var/www/html/storage/logs \
        -v encryption-redis:/var/lib/redis \
-       -v ./logs:/var/www/html/storage/logs \
        --restart=unless-stopped \
        --name encryption-$APP_RELEASE referralfactory/encryption-app:$APP_RELEASE
 ```
