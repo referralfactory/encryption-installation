@@ -135,10 +135,12 @@ We will use that number in the following commands.
 APP_RELEASE=1.0.14 && \
 FORWARD_APP_PORT=8080 && \
 FORWARD_MYSQL_PORT=3306 && \
+ENV_FILE=./.env.app && \
+[ -f $ENV_FILE ] && sudo chown 1000:1000 $ENV_FILE && \
 docker run -d \
        -p $FORWARD_APP_PORT:8080 \
        -p $FORWARD_MYSQL_PORT:3306 \
-       -v ./.env.app:/var/www/html/.env.app \
+       -v $ENV_FILE:/var/www/html/.env.app \
        -v encryption-redis:/var/lib/redis \
        -v encryption-mysql:/var/lib/mysql \
        -v ./logs:/var/www/html/storage/logs \
@@ -151,9 +153,11 @@ docker run -d \
 ```bash
 APP_RELEASE=1.0.14 && \
 FORWARD_APP_PORT=8080 && \
+ENV_FILE=./.env.app && \
+[ -f $ENV_FILE ] && sudo chown 1000:1000 $ENV_FILE && \
 docker run -d \
        -p $FORWARD_APP_PORT:8080 \
-       -v ./.env.app:/var/www/html/.env.app \
+       -v $ENV_FILE:/var/www/html/.env.app \
        -v encryption-redis:/var/lib/redis \
        -v ./logs:/var/www/html/storage/logs \
        --restart=unless-stopped \
